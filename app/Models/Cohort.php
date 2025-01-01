@@ -37,4 +37,44 @@ class Cohort extends Model
     {
         return $this->belongsTo(CohortCategory::class);
     }
+
+    public static function getOne($id){
+        return self::findOrFail($id);
+    }
+
+    public static function insertCohort($request){
+        $row = Cohort::create([
+            'title' => $request->title,
+            'student_number' => $request->student_number,
+            'duration' => $request->duration,
+            'country' => $request->country,
+            'image_path' => $request->image_path,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'cohort_category_id' => $request->cohort_category_id
+        ]);
+        return $row;
+    }
+
+    public static function updateCohort($request, $id){
+
+        $row = Cohort::findOrFail($id);
+
+        return $row->update([
+            'title' => $request->title,
+            'student_number' => $request->student_number,
+            'duration' => $request->duration,
+            'country' => $request->country,
+            'image_path' => $request->image_path,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'cohort_category_id' => $request->cohort_category_id
+        ]);
+    }
+
+    public static function deleteCohort(int $id): bool
+    {
+        $row = Cohort::find($id);
+        return $row ? $row->delete() : false;
+    }
 }

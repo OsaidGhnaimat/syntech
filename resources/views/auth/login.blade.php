@@ -22,9 +22,9 @@
 
 
 
-  <div class="untree_co-section">
-    <div class="container">
 
+  <div class="untree_co-section">
+      <div class="container">
       <div class="row mb-5 justify-content-center">
         <div class="col-lg-5 mx-auto order-1" data-aos="fade-up" data-aos-delay="200">
             <form action="{{ route('loginAction') }}" method="post" class="form-box">
@@ -35,6 +35,13 @@
                         @error('email')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
+
+                        @if (session('error'))
+                        <div class="alert alert-danger">
+                            {{ $email_not_exist }}
+                        </div>
+                      @endif
+
                     </div>
 
                     <div class="col-12 mb-3">

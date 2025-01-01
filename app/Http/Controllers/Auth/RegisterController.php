@@ -30,7 +30,7 @@ class RegisterController extends Controller
         } catch (\Throwable $e) {
 
             // Redirect back to the login page with an error message
-            return redirect()->route('showLogin')->with('error', 'Registration failed. Please try again.');
+            return redirect()->back()->with('error', 'Registration failed. Please try again.');
         }
     }
 }

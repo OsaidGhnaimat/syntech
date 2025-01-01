@@ -19,6 +19,7 @@ return new class extends Migration
             $table->longText('assessment_method')->nullable();
             $table->longText('context')->nullable();
             $table->text('image_path')->nullable();
+            $table->string('status')->nullable();
             $table->foreignId('cohort_id')
             ->unsigned()
             ->nullable()

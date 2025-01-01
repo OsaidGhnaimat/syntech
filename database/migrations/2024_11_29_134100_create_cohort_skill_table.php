@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('cohort_id');
             $table->unsignedBigInteger('skill_id');
-            $table->timestamps();
 
             $table->foreign('cohort_id')->references('id')->on('cohorts')->onDelete('cascade');
             $table->foreign('skill_id')->references('id')->on('skills')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

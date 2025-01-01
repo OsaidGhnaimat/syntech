@@ -1,3 +1,4 @@
+</main>
   <footer class="footer">
     <!-- Container -->
     <div class="container-fixed">
@@ -1361,7 +1362,10 @@
  </script>
  <script src="dashboard/assets/js/layouts/demo1.js">
  </script>
+  <script src="dashboard/assets/js/myscript.js">
+ </script>
  <!-- End of Scripts -->
+ @livewireScripts
 </body>
 </html>
 

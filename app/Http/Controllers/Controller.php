@@ -10,7 +10,7 @@ abstract class Controller
         {
             return response()->json([
                 'status' => $params['status'],
-                'message' => __($params['message']),
+                'message' => $params['message']??null,
                 'data' => $params['data']??null,
                 'error' => $params['error']??null,
             ], $params['code']??200);

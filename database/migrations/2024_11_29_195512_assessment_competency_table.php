@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('assessment_id');
             $table->unsignedBigInteger('competency_id');
             $table->boolean('is_pass')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
-
             $table->foreign('assessment_id')->references('id')->on('assessments')->onDelete('cascade');
             $table->foreign('competency_id')->references('id')->on('competencies')->onDelete('cascade');
         });

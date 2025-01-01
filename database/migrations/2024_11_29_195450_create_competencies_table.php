@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('competencies', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->text('title');
+            $table->longText('description');
             $table->foreignId('brief_id')
             ->unsigned()
             ->nullable()

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Assessment extends Model
 {
@@ -21,11 +22,16 @@ class Assessment extends Model
 
     public function user() : BelongsTo
     {
-        return $this->belongsToy(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function brief() : BelongsTo
     {
-        return $this->belongsToy(Brief::class);
+        return $this->belongsTo(Brief::class);
+    }
+
+    public function userAssessmentDetail() : HasMany
+    {
+        return $this->hasMany(UserAssessmentDetail::class);
     }
 }
