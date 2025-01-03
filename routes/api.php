@@ -1,11 +1,16 @@
 <?php
 
+use App\Http\Controllers\Api\AssessmentApiController;
 use App\Http\Controllers\Api\ForgotPasswordController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BriefApiController;
 use App\Http\Controllers\Api\CohortApiController;
 use App\Http\Controllers\Api\CohortCategoryApiController;
+use App\Http\Controllers\Api\CompetencyApiController;
 use App\Http\Controllers\Api\GeneralController;
+use App\Http\Controllers\Api\SkillApiController;
 use App\Http\Controllers\Api\StudentApiController;
+use App\Http\Controllers\Api\TagsApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +35,14 @@ Route::middleware("auth:sanctum")->group(function (){
         Route::apiResource('students', StudentApiController::class);
         Route::apiResource('cohort-category', CohortCategoryApiController::class);
         Route::apiResource('cohort', CohortApiController::class);
+        Route::apiResource('brief', BriefApiController::class);
+        Route::apiResource('tags', TagsApiController::class);
+        Route::apiResource('skills', SkillApiController::class);
+        Route::apiResource('competencies', CompetencyApiController::class);
+        Route::apiResource('assessments', AssessmentApiController::class);
+
+
+
 
     });
 

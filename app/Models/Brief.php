@@ -37,4 +37,56 @@ class Brief extends Model
     {
         return $this->hasMany(Competency::class);
     }
+
+    public static function getOne($id){
+        return self::findOrFail($id);
+    }
+
+    public static function insertBrief($request, $imagePath = '')
+    {
+        $data = [
+            'title' => $request->title,
+            'description' => $request->description,
+            'expected_deliverables' => $request->expected_deliverables,
+            'assessment_method' => $request->assessment_method,
+            'context' => $request->context,
+            'cohort_id' => $request->cohort_id,
+        ];
+
+        // Conditionally set 'image_path' only if it's not empty
+        if (!empty($imagePath)) {
+            $data['image_path'] = $imagePath;
+        }
+        // Create the record
+        $row = self::create($data);
+        return $row;
+    }
+
+
+
+    public static function updateBrief($request, $id, $imagePath = ''){
+
+        $row = self::findOrFail($id);
+
+        $data = [
+            'title' => $request->title,
+            'description' => $request->description,
+            'expected_deliverables' => $request->expected_deliverables,
+            'assessment_method' => $request->assessment_method,
+            'context' => $request->context,
+            'cohort_id' => $request->cohort_id,
+        ];
+
+        if (!empty($imagePath)) {
+            $data['image_path'] = $imagePath;
+        }
+
+        return $row->update($data);
+    }
+
+    public static function deleteBrief(int $id): bool
+    {
+        $row = self::find($id);
+        return $row ? $row->delete() : false;
+    }
 }

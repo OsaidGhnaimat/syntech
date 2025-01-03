@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 class StudentApiController extends Controller
 {
     public function index(){
-            $users = User::role('student')->get();
+        $users = User::role('student')->get();
         return $this->response(['status' => Constant::HTTP_STATUS['success'],  'data' => ['data' => StudentResource::collection($users)], 'code' => Constant::HTTP_CODE['success']]);
     }
 

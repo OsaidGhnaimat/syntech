@@ -42,39 +42,52 @@ class Cohort extends Model
         return self::findOrFail($id);
     }
 
-    public static function insertCohort($request){
-        $row = Cohort::create([
-            'title' => $request->title,
+    public static function insertCohort($request, $imagePath = '')
+    {
+        $data = [
+           'title' => $request->title,
             'student_number' => $request->student_number,
             'duration' => $request->duration,
             'country' => $request->country,
-            'image_path' => $request->image_path,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'cohort_category_id' => $request->cohort_category_id
-        ]);
+        ];
+
+        // Conditionally set 'image_path' only if it's not empty
+        if (!empty($imagePath)) {
+            $data['image_path'] = $imagePath;
+        }
+        // Create the record
+        $row = self::create($data);
         return $row;
     }
 
-    public static function updateCohort($request, $id){
+    public static function updateCohort($request, $id, $imagePath = ''){
 
-        $row = Cohort::findOrFail($id);
+        $row = self::findOrFail($id);
 
-        return $row->update([
+        $data = [
             'title' => $request->title,
             'student_number' => $request->student_number,
             'duration' => $request->duration,
             'country' => $request->country,
-            'image_path' => $request->image_path,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'cohort_category_id' => $request->cohort_category_id
-        ]);
+        ];
+
+        if (!empty($imagePath)) {
+            $data['image_path'] = $imagePath;
+        }
+
+        return $row->update($data);
     }
+
 
     public static function deleteCohort(int $id): bool
     {
-        $row = Cohort::find($id);
+        $row = self::find($id);
         return $row ? $row->delete() : false;
     }
 }

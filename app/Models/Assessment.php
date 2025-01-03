@@ -34,4 +34,35 @@ class Assessment extends Model
     {
         return $this->hasMany(UserAssessmentDetail::class);
     }
+
+    public static function getOne($id){
+        return self::findOrFail($id);
+    }
+
+    public static function insertAssessment($request)
+    {
+        return self::create([
+            "progress_comment" => $request->progress_comment,
+            "is_pass"          => $request->is_pass,
+            "user_id"          => $request->user_id,
+            "brief_id"         => $request->brief_id,
+        ]);
+    }
+
+    public static function updateAssessment($request, $id){
+
+        $row = self::findOrFail($id);
+        return $row->update([
+            "progress_comment" => $request->progress_comment,
+            "is_pass"          => $request->is_pass,
+            "user_id"          => $request->user_id,
+            "brief_id"         => $request->brief_id,
+        ]);
+    }
+
+    public static function deleteAssessment(int $id): bool
+    {
+        $row = self::find($id);
+        return $row ? $row->delete() : false;
+    }
 }

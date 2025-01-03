@@ -23,12 +23,13 @@ class LoginController extends Controller
             // Redirect based on role
             $user = Auth::user();
 
-            return match (true) {
-                $user->hasRole('admin') => redirect()->route('dashboard'),
-                $user->hasRole('student'),
-                $user->hasRole('trainer') => redirect()->route('home'),
-                default => redirect('/home'),
-            };
+            if ($user->hasRole('admin')) {
+                return redirect()->route('dashboard');
+            } elseif ($user->hasRole(['student', 'trainer'])) {
+                return redirect()->route('home');
+            } else {
+                return redirect()->route('home');
+            }
         }
 
         // If login fails
@@ -43,4 +44,5 @@ class LoginController extends Controller
         Auth::logout();
         return redirect()->route('home');
     }
+
 }

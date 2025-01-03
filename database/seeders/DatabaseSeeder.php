@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             CohortCategorySeeder::class,
             CohortSeeder::class,
+            BriefSeeder::class,
         ]);
 
     }
